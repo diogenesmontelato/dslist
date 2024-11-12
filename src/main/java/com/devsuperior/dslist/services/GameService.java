@@ -1,9 +1,28 @@
 package com.devsuperior.dslist.services;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-//PODE SER USADO O @Component TAMBEM - SERVER PARA REGISTRAR O GAMERSERVICE COMO UM COPONENTE DO SISTEMA
-@Service
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.devsuperior.dslist.dto.GameMinDTO;
+import com.devsuperior.dslist.entities.Game;
+import com.devsuperior.dslist.repositories.GameRepository;
+
+
+@Component
 public class GameService {
 
+	@Autowired 
+	private GameRepository gameRepository;
+	public List<GameMinDTO> findAll(){
+		
+		List<Game> result = gameRepository.findAll();
+	    return	result.stream().map(x -> new GameMinDTO(x)).toList();
+		//var result = gameRepository.findAll();
+		
+		
+		
+		
+	}
 }
